@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>कृषीसखी मूल्यांकन</title>
+    <?php include './include-common-style.php'; ?>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <?php include './include-sidebar.php'; ?>
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0" id="name_upade">कृषीसखी मूल्यांकन</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="content">
+                <div class="container-fluid text-uppercase">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="row" id="questionsContainer">
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6 form-group" id="fileuploaddiv">
+                                    <label for="" class="form-label">फाईल अपलोड</label>
+                                    <input type="file" name="file_upload" class="form-control" id="file_upload" required>
+                                </div>
+                                <!-- <div class="col-md-6 form-group">
+                                    <label for="" class="form-label">टिप्पणी</label>
+                                    <textarea name="remark" class="form-control" id="remark" placeholder="टिप्पणी प्रविष्ट करा" required></textarea>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="" class="form-label">टिप्पणी</label>
+                                    <textarea name="remark" class="form-control" id="remark" placeholder="टिप्पणी प्रविष्ट करा" required></textarea>
+                                </div> -->
+                                <!-- <div class="row pt-3"> -->
+                                                    <div class="col-md-6 form-group" id="remark1_div">
+                                                        <label for="remark1">पूर्ण केलेल्या कामाबद्दल प्रभाग समन्यवक टिप्पणी </label>
+                                                        <input type="text" class="form-control" id="remark1" name="remark1" accept="image/*" required>
+
+                                                    </div>
+                                                    <div class="col-md-6 form-group" id="remark2_div">
+                                                        <label for="remark2">पूर्ण केलेल्या कामाबद्दल तालुका अभियान व्यवस्थापक टिप्पणी</label>
+                                                        <input type="text" class="form-control" id="remark2" name="remark2" multiple accept="image/*" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-3">
+                                                    <div class="col-md-6 form-group" id="statuscc">
+                                                        <label for="" class="form-label">प्रभाग समन्यवक शेरा :</label>
+                                                        <select name="role" id="statusDropDowncc" class="form-control" required>
+                                                            <option value="मंजूर">मंजूर</option>
+
+                                                            <option value="नामंजूर">नामंजूर</option>
+
+                                                            <option value="पेंडिंग">पेंडिंग</option>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- <div class="row pt-3"> -->
+                                                    <div class="col-md-6 form-group" id="statusbmm">
+                                                        <label for="" class="form-label">तालुका अभियान व्यवस्थापक शेरा :</label>
+                                                        <select name="role" id="statusDropDownbmm" class="form-control" required>
+                                                            <option value="मंजूर">मंजूर</option>
+
+                                                            <option value="नामंजूर">नामंजूर</option>
+
+                                                            <option value="पेंडिंग">पेंडिंग</option>
+
+                                                        </select>
+                                                    </div>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center" id="">
+                                <button type="button" class="btn btn-info my-2" id="submit">जतन करा </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <?php include './include-common-scripts.php'; ?>
+    <script src="assets/js/parseData.js"></script>
+    <script src="assets/js/filter/krushiSakhiQuestion.js"></script>
+    <script src="assets/js/filter/updateKrushiSakhi.js"></script>
+    <script>
+        krushiSakhiQuestion()
+        // submitKrushiSakhi()
+        // updateKrushiSakhiReport()
+        const user = JSON.parse(localStorage.getItem("user"));
+        const {
+            id
+        } = user;
+        (() => {
+            let id = getQueryParamValue("id");
+            console.log("get it", id);
+            if (id) {
+                updateKrushiSakhiReport(id);
+                return;
+            }
+            submitKrushiSakhi()
+        })();
+    </script>
+     <script>
+        document.querySelector("#logout").addEventListener("click", function() {
+            sessionStorage.clear();
+            window.location.href = "frm-login.php";
+        })
+    </script>
+</body>
+
+</html>
